@@ -13,13 +13,13 @@ namespace LinkedList
         ~List();
 
         bool isEmpty();
-        unsigned listSize();
+        unsigned size();
 
     private:
         ListNode<TYPE> *firstNode;
         ListNode<TYPE> *lastNode;
 
-        unsigned size;
+        unsigned m_size;
     };
 } // namespace LinkedList
 

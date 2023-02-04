@@ -4,7 +4,7 @@
 #include "list.hpp"
 
 template <typename TYPE>
-LinkedList::List<TYPE>::List() : firstNode{nullptr}, lastNode{nullptr}, size{0}
+LinkedList::List<TYPE>::List() : firstNode{nullptr}, lastNode{nullptr}, m_size{0}
 {
 }
 
@@ -22,13 +22,13 @@ LinkedList::List<TYPE>::~List()
 template <typename TYPE>
 bool LinkedList::List<TYPE>::isEmpty()
 {
-    return !size;
+    return !m_size;
 }
 
 template <typename TYPE>
-unsigned LinkedList::List<TYPE>::listSize()
+unsigned LinkedList::List<TYPE>::size()
 {
-    return size;
+    return m_size;
 }
 
 #endif // LINKEDLIST_CPP
