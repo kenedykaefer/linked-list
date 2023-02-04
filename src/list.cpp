@@ -1,12 +1,11 @@
+#ifndef LINKEDLIST_CPP
+#define LINKEDLIST_CPP
+
 #include "list.hpp"
 
 template <typename TYPE>
-LinkedList::List<TYPE>::List()
+LinkedList::List<TYPE>::List() : firstNode{nullptr}, lastNode{nullptr}, size{0}
 {
-    firstNode = nullptr;
-    lastNode = nullptr;
-
-    size = 0;
 }
 
 template <typename TYPE>
@@ -32,9 +31,4 @@ unsigned LinkedList::List<TYPE>::listSize()
     return size;
 }
 
-void a()
-{
-    LinkedList::List<int> a;
-    a.isEmpty();
-    a.listSize();
-}
+#endif // LINKEDLIST_CPP

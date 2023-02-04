@@ -5,7 +5,7 @@
 
 namespace LinkedList
 {
-    template <typename TYPE>
+    template <typename NODETYPE>
     class List;
 
     template <typename NODETYPE>
@@ -14,11 +14,11 @@ namespace LinkedList
         friend class List<NODETYPE>;
 
     public:
-        explicit ListNode(const NODETYPE &data);
+        explicit ListNode(const NODETYPE &data) : m_data{data}, nextNode{nullptr} {}
 
     private:
         ListNode<NODETYPE> *nextNode;
-        NODETYPE data;
+        NODETYPE m_data;
     };
 } // namespace LinkedList
 

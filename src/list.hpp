@@ -5,9 +5,6 @@
 
 namespace LinkedList
 {
-    template <typename NODETYPE>
-    class ListNode;
-
     template <typename TYPE>
     class List
     {
@@ -24,7 +21,8 @@ namespace LinkedList
 
         unsigned size;
     };
-
 } // namespace LinkedList
+
+#include "list.cpp"
 
 #endif // LINKEDLIST_HPP
