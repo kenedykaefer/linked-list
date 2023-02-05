@@ -1,25 +1,30 @@
 #ifndef LINKEDLIST_HPP
 #define LINKEDLIST_HPP
 
+#include <cstddef>
 #include "listNode.hpp"
 
 namespace LinkedList
 {
-    template <typename TYPE>
+    template <typename T>
     class List
     {
     public:
         List();
         ~List();
 
-        bool isEmpty();
-        unsigned size();
+        bool isEmpty() const;
+        size_t size() const;
+
+        T at(const size_t position) const;
+        T front() const;
+        T back() const;
 
     private:
-        ListNode<TYPE> *firstNode;
-        ListNode<TYPE> *lastNode;
+        ListNode<T> *firstNode;
+        ListNode<T> *lastNode;
 
-        unsigned m_size;
+        size_t m_size;
     };
 } // namespace LinkedList
 

@@ -3,32 +3,46 @@
 
 #include "list.hpp"
 
-template <typename TYPE>
-LinkedList::List<TYPE>::List() : firstNode{nullptr}, lastNode{nullptr}, m_size{0}
+template <typename T>
+LinkedList::List<T>::List() : firstNode{nullptr}, lastNode{nullptr}, m_size{0}
 {
 }
 
-template <typename TYPE>
-LinkedList::List<TYPE>::~List()
+template <typename T>
+LinkedList::List<T>::~List()
 {
     while (firstNode != nullptr)
     {
-        ListNode<TYPE> *tempNode{firstNode};
+        ListNode<T> *tempNode{firstNode};
         firstNode = firstNode->nextNode;
         delete tempNode;
     }
 }
 
-template <typename TYPE>
-bool LinkedList::List<TYPE>::isEmpty()
+template <typename T>
+bool LinkedList::List<T>::isEmpty() const
 {
     return !m_size;
 }
 
-template <typename TYPE>
-unsigned LinkedList::List<TYPE>::size()
+template <typename T>
+size_t LinkedList::List<T>::size() const
 {
     return m_size;
 }
 
+template <typename T>
+T LinkedList::List<T>::at(const size_t position) const
+{
+}
+
+template <typename T>
+T LinkedList::List<T>::front() const
+{
+}
+
+template <typename T>
+T LinkedList::List<T>::back() const
+{
+}
 #endif // LINKEDLIST_CPP
