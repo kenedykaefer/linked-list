@@ -1,4 +1,5 @@
 #include <catch2/catch_test_macros.hpp>
+#include <catch2/generators/catch_generators_all.hpp>
 #include "list.hpp"
 
 TEST_CASE("empty list", "[capacity],[empty]")
@@ -49,4 +50,13 @@ TEST_CASE("access the specified element", "[element access],[at]")
     {
         REQUIRE_THROWS_AS(list.at(0), std::out_of_range);
     }
+}
+
+TEST_CASE("add element at the end", "[modifiers],[push_back]")
+{
+    LinkedList::List<int> list;
+
+    auto i = GENERATE(take(100, random(-1000, 1000)));
+    list.push_back(i);
+    REQUIRE(list.back() == i);
 }

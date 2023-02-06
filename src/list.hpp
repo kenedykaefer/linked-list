@@ -21,6 +21,8 @@ namespace LinkedList
         T front() const;
         T back() const;
 
+        void push_back(const T &value);
+
     private:
         ListNode<T> *firstNode;
         ListNode<T> *lastNode;

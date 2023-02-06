@@ -40,7 +40,7 @@ T LinkedList::List<T>::at(size_t position) const
     if (position >= m_size)
         throw out_of_range(m_size);
 
-    const ListNode<T> *currentNode{firstNode}; 
+    const ListNode<T> *currentNode{firstNode};
 
     while (position--)
         currentNode = currentNode->nextNode;
@@ -64,5 +64,10 @@ T LinkedList::List<T>::back() const
         throw empty_list();
 
     return lastNode->m_data;
+}
+
+template <typename T>
+void LinkedList::List<T>::push_back(const T &value)
+{
 }
 #endif // LINKEDLIST_CPP
