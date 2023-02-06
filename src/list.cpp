@@ -32,17 +32,37 @@ size_t LinkedList::List<T>::size() const
 }
 
 template <typename T>
-T LinkedList::List<T>::at(const size_t position) const
+T LinkedList::List<T>::at(size_t position) const
 {
+    if (!m_size)
+        throw empty_list();
+
+    if (position >= m_size)
+        throw out_of_range(m_size);
+
+    const ListNode<T> *currentNode{firstNode}; 
+
+    while (position--)
+        currentNode = currentNode->nextNode;
+
+    return currentNode->m_data;
 }
 
 template <typename T>
 T LinkedList::List<T>::front() const
 {
+    if (!m_size)
+        throw empty_list();
+
+    return firstNode->m_data;
 }
 
 template <typename T>
 T LinkedList::List<T>::back() const
 {
+    if (!m_size)
+        throw empty_list();
+
+    return lastNode->m_data;
 }
 #endif // LINKEDLIST_CPP

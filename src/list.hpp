@@ -2,6 +2,7 @@
 #define LINKEDLIST_HPP
 
 #include <cstddef>
+#include "exceptionList.hpp"
 #include "listNode.hpp"
 
 namespace LinkedList
@@ -16,7 +17,7 @@ namespace LinkedList
         bool isEmpty() const;
         size_t size() const;
 
-        T at(const size_t position) const;
+        T at(size_t position) const;
         T front() const;
         T back() const;
 
