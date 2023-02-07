@@ -18,6 +18,16 @@ namespace LinkedList
     public:
         explicit out_of_range(const size_t maxSize) : std::out_of_range("position out of range: 0 <= position < " + std::to_string(maxSize)) {}
     };
+
+    class bad_alloc : public std::bad_alloc
+    {
+        public:
+        const char* what() const noexcept override
+        {
+            return "allocation of memory failed";
+        }
+        
+    };
 } // namespace LinkedList
 
 #endif // EXCEPTIONLIST_HPP

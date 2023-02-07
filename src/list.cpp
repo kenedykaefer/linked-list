@@ -67,7 +67,38 @@ T LinkedList::List<T>::back() const
 }
 
 template <typename T>
+LinkedList::ListNode<T> *LinkedList::List<T>::newNode(const T &value)
+{
+    try
+    {
+        return new ListNode<T>(value);
+    }
+    catch (const std::exception &e)
+    {
+        throw LinkedList::bad_alloc();
+    }
+}
+
+template <typename T>
 void LinkedList::List<T>::push_back(const T &value)
 {
+    try
+    {
+        if (m_size)
+        {
+            lastNode->nextNode = newNode(value);
+            lastNode = lastNode->nextNode;
+        }
+        else
+        {
+            firstNode = newNode(value);
+            lastNode = firstNode;
+        }
+        m_size++;
+    }
+    catch (const std::exception &e)
+    {
+        throw;
+    }
 }
 #endif // LINKEDLIST_CPP

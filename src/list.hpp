@@ -28,6 +28,8 @@ namespace LinkedList
         ListNode<T> *lastNode;
 
         size_t m_size;
+
+        ListNode<T> *newNode(const T &value);
     };
 } // namespace LinkedList
 
