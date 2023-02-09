@@ -101,4 +101,9 @@ void LinkedList::List<T>::push_back(const T &value)
         throw;
     }
 }
+
+template <typename T>
+void LinkedList::List<T>::pop_back()
+{
+}
 #endif // LINKEDLIST_CPP

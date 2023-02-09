@@ -1,6 +1,8 @@
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/generators/catch_generators_all.hpp>
 #include "list.hpp"
+#include <vector>
+#include <iostream>
 
 TEST_CASE("empty list", "[capacity],[empty]")
 {
@@ -59,4 +61,41 @@ TEST_CASE("add element at the end", "[modifiers],[push_back]")
     auto i = GENERATE(take(100, random(-1000, 1000)));
     list.push_back(i);
     REQUIRE(list.back() == i);
+}
+
+TEST_CASE("pop_back method", "[modifiers],[pop_back]")
+{
+    LinkedList::List<int> list;
+
+    SECTION("with the empty list")
+    {
+        REQUIRE_THROWS_AS(list.pop_back(), std::out_of_range);
+    }
+
+    SECTION("with one element in the list")
+    {
+        list.push_back(1);
+        list.pop_back();
+        REQUIRE(list.isEmpty() == true);
+    }
+
+    SECTION("with elements in the list")
+    {
+        int i{0};
+
+        while (++i < 100)
+            list.push_back(i);
+
+        list.push_back(i);
+
+        while (--i)
+        {
+            list.pop_back();
+            REQUIRE(list.back() == i);
+        }
+
+        list.pop_back();
+
+        REQUIRE(list.isEmpty() == true);
+    }
 }

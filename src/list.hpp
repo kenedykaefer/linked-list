@@ -22,6 +22,7 @@ namespace LinkedList
         T back() const;
 
         void push_back(const T &value);
+        void pop_back();
 
     private:
         ListNode<T> *firstNode;
