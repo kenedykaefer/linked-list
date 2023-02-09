@@ -105,5 +105,24 @@ void LinkedList::List<T>::push_back(const T &value)
 template <typename T>
 void LinkedList::List<T>::pop_back()
 {
+    if (firstNode == nullptr)
+        throw LinkedList::empty_list();
+
+    ListNode<T> *currentNode{firstNode};
+
+    if (firstNode == lastNode)
+    {
+        firstNode = lastNode = nullptr;
+        delete currentNode;
+    }
+    else
+    {
+        while (currentNode->nextNode != lastNode)
+            currentNode = currentNode->nextNode;
+        lastNode = currentNode;
+        delete currentNode->nextNode;
+        currentNode->nextNode = nullptr;
+    }
+    m_size--;
 }
 #endif // LINKEDLIST_CPP
