@@ -4,12 +4,23 @@
 #include <vector>
 #include <iostream>
 
-TEST_CASE("empty list", "[capacity],[empty]")
+TEST_CASE("isEmpty method", "[capacity],[empty]")
 {
     LinkedList::List<int> list;
 
     SECTION("with the empty list")
     {
+        REQUIRE(list.isEmpty() == true);
+    }
+    SECTION("with elements in the list")
+    {
+        list.push_back(1);
+        REQUIRE(list.isEmpty() == false);
+        list.push_back(2);
+        REQUIRE(list.isEmpty() == false);
+        list.pop_back();
+        REQUIRE(list.isEmpty() == false);
+        list.pop_back();
         REQUIRE(list.isEmpty() == true);
     }
 }
