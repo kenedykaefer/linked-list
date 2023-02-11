@@ -25,12 +25,35 @@ TEST_CASE("isEmpty method", "[capacity],[empty]")
     }
 }
 
-TEST_CASE("list size", "[capacity],[size]")
+TEST_CASE("size method", "[capacity],[size]")
 {
     LinkedList::List<int> list;
 
     SECTION("with the empty list")
     {
+        REQUIRE(list.size() == 0);
+    }
+    
+    SECTION("with elements in the list")
+    {
+        int i{0};
+
+        while (++i < 10)
+        {
+            list.push_back(i);
+            REQUIRE(list.size() == i);
+        }
+
+        list.push_back(i);
+        REQUIRE(list.size() == i);
+        
+        while (--i)
+        {
+            list.pop_back();
+            REQUIRE(list.size() == i);
+        }
+        
+        list.pop_back();
         REQUIRE(list.size() == 0);
     }
 }
