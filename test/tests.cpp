@@ -33,7 +33,7 @@ TEST_CASE("size method", "[capacity],[size]")
     {
         REQUIRE(list.size() == 0);
     }
-    
+
     SECTION("with elements in the list")
     {
         int i{0};
@@ -46,24 +46,47 @@ TEST_CASE("size method", "[capacity],[size]")
 
         list.push_back(i);
         REQUIRE(list.size() == i);
-        
+
         while (--i)
         {
             list.pop_back();
             REQUIRE(list.size() == i);
         }
-        
+
         list.pop_back();
         REQUIRE(list.size() == 0);
     }
 }
 
-TEST_CASE("access the last element", "[element access],[back]")
+TEST_CASE("back method", "[element access],[back]")
 {
     LinkedList::List<int> list;
 
     SECTION("with the empty list")
     {
+        REQUIRE_THROWS_AS(list.back(), std::out_of_range);
+    }
+
+    SECTION("with elements in the list")
+    {
+        int i{0};
+
+        while (++i < 10)
+        {
+            list.push_back(i);
+            REQUIRE(list.back() == i);
+        }
+
+        list.push_back(i);
+        REQUIRE(list.back() == i);
+
+        while (--i)
+        {
+            list.pop_back();
+            REQUIRE(list.back() == i);
+        }
+
+        list.pop_back();
         REQUIRE_THROWS_AS(list.back(), std::out_of_range);
     }
 }
