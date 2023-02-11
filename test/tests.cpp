@@ -54,13 +54,21 @@ TEST_CASE("access the specified element", "[element access],[at]")
     }
 }
 
-TEST_CASE("add element at the end", "[modifiers],[push_back]")
+TEST_CASE("push_back method", "[modifiers],[push_back]")
 {
-    LinkedList::List<int> list;
+    LinkedList::List<size_t> list;
+    const size_t count = 100;
 
-    auto i = GENERATE(take(100, random(-1000, 1000)));
-    list.push_back(i);
-    REQUIRE(list.back() == i);
+    for (size_t i = 0; i < count; i++)
+    {
+        list.push_back(i);
+        REQUIRE(list.back() == i);
+    }
+
+    for (size_t i = 0; i < count; i++)
+    {
+        REQUIRE(list.at(i) == i);
+    }
 }
 
 TEST_CASE("pop_back method", "[modifiers],[pop_back]")
