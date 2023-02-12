@@ -91,12 +91,34 @@ TEST_CASE("back method", "[element access],[back]")
     }
 }
 
-TEST_CASE("access the first element", "[element access],[front]")
+TEST_CASE("front method", "[element access],[front]")
 {
     LinkedList::List<int> list;
 
     SECTION("with the empty list")
     {
+        REQUIRE_THROWS_AS(list.front(), std::out_of_range);
+    }
+
+    SECTION("with elements in the list")
+    {
+        int i{0};
+
+        list.push_back(100);
+
+        while (++i < 5)
+        {
+            list.push_back(i);
+            REQUIRE(list.front() == 100);
+        }
+
+        while (--i)
+        {
+            list.pop_back();
+            REQUIRE(list.front() == 100);
+        }
+
+        list.pop_back();
         REQUIRE_THROWS_AS(list.front(), std::out_of_range);
     }
 }
