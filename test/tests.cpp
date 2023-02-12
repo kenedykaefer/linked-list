@@ -123,13 +123,28 @@ TEST_CASE("front method", "[element access],[front]")
     }
 }
 
-TEST_CASE("access the specified element", "[element access],[at]")
+TEST_CASE("at method", "[element access],[at]")
 {
     LinkedList::List<int> list;
 
     SECTION("with the empty list")
     {
         REQUIRE_THROWS_AS(list.at(0), std::out_of_range);
+    }
+
+    SECTION("with elements in the list")
+    {
+        const int count = 100;
+
+        for (int i = 0; i < count; i++)
+        {
+            list.push_back(i);
+        }
+
+        for (int i = 0; i < count; i++)
+        {
+            REQUIRE(list.at(i) == i);
+        }
     }
 }
 
