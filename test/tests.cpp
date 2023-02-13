@@ -1,8 +1,10 @@
 #include <catch2/catch_test_macros.hpp>
-#include <catch2/generators/catch_generators_all.hpp>
+#include <catch2/catch_template_test_macros.hpp>
 #include "list.hpp"
 #include <vector>
 #include <iostream>
+#include <cmath>
+#include <string>
 
 TEST_CASE("isEmpty method", "[capacity],[empty]")
 {
@@ -200,4 +202,128 @@ TEST_CASE("pop_back method", "[modifiers],[pop_back]")
 
         REQUIRE(list.isEmpty() == true);
     }
+}
+
+TEMPLATE_TEST_CASE("list test with", "[template]", int, double, float, char, short, long, long long, unsigned char, unsigned short, unsigned int, unsigned long, unsigned long long)
+{
+    LinkedList::List<TestType> list;
+
+    REQUIRE(list.isEmpty() == true);
+    REQUIRE(list.size() == 0);
+
+    TestType value_mim{0};
+    TestType value_max{100};
+    if (std::is_signed<TestType>::value)
+    {
+        value_mim = -100;
+    }
+    else
+    {
+        value_max = 200;
+    }
+    const size_t count = 200;
+    TestType value{value_mim};
+
+    for (size_t i = 0; i < count; i++)
+    {
+        list.push_back(value);
+        REQUIRE(list.back() == value);
+        value++;
+    }
+
+    list.push_back(value);
+
+    REQUIRE(list.front() == value_mim);
+    REQUIRE(list.back() == value_max);
+    REQUIRE(list.size() == (abs(value_mim) + abs(value_max) + 1));
+    REQUIRE(list.isEmpty() == false);
+
+    value = value_mim;
+
+    for (size_t i = 0; i < count; i++)
+    {
+        REQUIRE(list.at(i) == value++);
+    }
+
+    value = value_max;
+
+    for (size_t i = 0; i < count; i++)
+    {
+        list.pop_back();
+        REQUIRE(list.back() == --value);
+    }
+
+    REQUIRE(list.front() == value_mim);
+    REQUIRE(list.front() == list.back());
+    REQUIRE(list.size() == 1);
+    list.pop_back();
+    REQUIRE(list.isEmpty() == true);
+
+    REQUIRE_THROWS_AS(list.pop_back(), std::out_of_range);
+    REQUIRE_THROWS_AS(list.front(), std::out_of_range);
+    REQUIRE_THROWS_AS(list.back(), std::out_of_range);
+    REQUIRE_THROWS_AS(list.at(0), std::out_of_range);
+}
+
+TEST_CASE("list test with std::string", "[template]")
+{
+    LinkedList::List<std::string> list;
+
+    REQUIRE(list.isEmpty() == true);
+    REQUIRE(list.size() == 0);
+
+    const int value_mim{-100};
+    const int value_max{100};
+    const size_t count = 200;
+    int value{value_mim};
+    std::string str;
+
+    for (size_t i = 0; i < count; i++)
+    {
+        str = "number: " + std::to_string(value);
+        list.push_back(str);
+        REQUIRE(list.back() == str);
+        value++;
+    }
+
+    str = "number: " + std::to_string(value);
+    list.push_back(str);
+
+    str = "number: " + std::to_string(value_mim);
+    REQUIRE(list.front() == str);
+
+    str = "number: " + std::to_string(value_max);
+    REQUIRE(list.back() == str);
+
+    REQUIRE(list.size() == (abs(value_mim) + abs(value_max) + 1));
+    REQUIRE(list.isEmpty() == false);
+
+    value = value_mim;
+
+    for (size_t i = 0; i < count; i++)
+    {
+        str = "number: " + std::to_string(value++);
+        REQUIRE(list.at(i) == str);
+    }
+
+    value = value_max;
+
+    for (size_t i = 0; i < count; i++)
+    {
+        list.pop_back();
+        str = "number: " + std::to_string(--value);
+        REQUIRE(list.back() == str);
+    }
+
+    str = "number: " + std::to_string(value_mim);
+    REQUIRE(list.front() == str);
+    REQUIRE(list.front() == list.back());
+    REQUIRE(list.size() == 1);
+    list.pop_back();
+    REQUIRE(list.isEmpty() == true);
+
+    REQUIRE_THROWS_AS(list.pop_back(), std::out_of_range);
+    REQUIRE_THROWS_AS(list.front(), std::out_of_range);
+    REQUIRE_THROWS_AS(list.back(), std::out_of_range);
+    REQUIRE_THROWS_AS(list.at(0), std::out_of_range);
 }
