@@ -1,0 +1,1 @@
+Linked list is a personal project aimed at playing around with C++, with a focus on unit testing using Catch2
