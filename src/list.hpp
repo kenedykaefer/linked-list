@@ -3,7 +3,6 @@
 
 #include <cstddef>
 #include "exceptionList.hpp"
-#include "listNode.hpp"
 
 namespace LinkedList
 {
@@ -25,12 +24,24 @@ namespace LinkedList
         void pop_back();
 
     private:
-        ListNode<T> *firstNode;
-        ListNode<T> *lastNode;
+        class ListNode
+        {
+            friend class List;
+
+        public:
+            ListNode(const T &value);
+
+        private:
+            T data;
+            ListNode *nextNode;
+        };
+
+        ListNode *firstNode;
+        ListNode *lastNode;
 
         size_t m_size;
 
-        ListNode<T> *newNode(const T &value);
+        ListNode *newNode(const T &value);
     };
 } // namespace LinkedList
 

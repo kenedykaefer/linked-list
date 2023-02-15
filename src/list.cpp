@@ -4,6 +4,11 @@
 #include "list.hpp"
 
 template <typename T>
+LinkedList::List<T>::ListNode::ListNode(const T &value) : data{value}, nextNode{nullptr}
+{
+}
+
+template <typename T>
 LinkedList::List<T>::List() : firstNode{nullptr}, lastNode{nullptr}, m_size{0}
 {
 }
@@ -13,7 +18,7 @@ LinkedList::List<T>::~List()
 {
     while (firstNode != nullptr)
     {
-        ListNode<T> *tempNode{firstNode};
+        ListNode *tempNode{firstNode};
         firstNode = firstNode->nextNode;
         delete tempNode;
     }
@@ -40,12 +45,12 @@ T LinkedList::List<T>::at(size_t position) const
     if (position >= m_size)
         throw out_of_range(m_size);
 
-    const ListNode<T> *currentNode{firstNode};
+    const ListNode *currentNode{firstNode};
 
     while (position--)
         currentNode = currentNode->nextNode;
 
-    return currentNode->m_data;
+    return currentNode->data;
 }
 
 template <typename T>
@@ -54,7 +59,7 @@ T LinkedList::List<T>::front() const
     if (!m_size)
         throw empty_list();
 
-    return firstNode->m_data;
+    return firstNode->data;
 }
 
 template <typename T>
@@ -63,15 +68,15 @@ T LinkedList::List<T>::back() const
     if (!m_size)
         throw empty_list();
 
-    return lastNode->m_data;
+    return lastNode->data;
 }
 
 template <typename T>
-LinkedList::ListNode<T> *LinkedList::List<T>::newNode(const T &value)
+typename LinkedList::List<T>::ListNode *LinkedList::List<T>::newNode(const T &value)
 {
     try
     {
-        return new ListNode<T>(value);
+        return new ListNode(value);
     }
     catch (const std::exception &e)
     {
@@ -108,7 +113,7 @@ void LinkedList::List<T>::pop_back()
     if (firstNode == nullptr)
         throw LinkedList::empty_list();
 
-    ListNode<T> *currentNode{firstNode};
+    ListNode *currentNode{firstNode};
 
     if (firstNode == lastNode)
     {
