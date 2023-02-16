@@ -2,7 +2,6 @@
 #define LINKEDLIST_HPP
 
 #include <cstddef>
-#include "exceptionList.hpp"
 
 namespace LinkedList
 {

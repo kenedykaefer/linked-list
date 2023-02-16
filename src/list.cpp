@@ -2,6 +2,7 @@
 #define LINKEDLIST_CPP
 
 #include "list.hpp"
+#include "exceptionList.hpp"
 
 template <typename T>
 LinkedList::List<T>::ListNode::ListNode(const T &value) : data{value}, nextNode{nullptr}
