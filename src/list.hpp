@@ -8,6 +8,19 @@ namespace LinkedList
     template <typename T>
     class List
     {
+    private:
+        class ListNode
+        {
+            friend class List;
+
+        public:
+            ListNode(const T &value);
+
+        private:
+            T data;
+            ListNode *nextNode;
+        };
+
     public:
         List();
         ~List();
@@ -23,18 +36,6 @@ namespace LinkedList
         void pop_back();
 
     private:
-        class ListNode
-        {
-            friend class List;
-
-        public:
-            ListNode(const T &value);
-
-        private:
-            T data;
-            ListNode *nextNode;
-        };
-
         ListNode *firstNode;
         ListNode *lastNode;
 
