@@ -204,6 +204,36 @@ TEST_CASE("pop_back method", "[modifiers],[pop_back]")
     }
 }
 
+TEST_CASE("list iterator", "[iterator]")
+{
+    LinkedList::List<int> list;
+
+    int i{0};
+
+    while (i++ < 100)
+    {
+        list.push_back(i);
+    }
+
+    i = 0;
+
+    SECTION("standard for loop")
+    {
+        for (LinkedList::List<int>::iterator it{list.begin()}; it != list.end(); ++it)
+        {
+            REQUIRE(*it == ++i);
+        }
+    }
+
+    SECTION("range-based for loop")
+    {
+        for (const auto &v: list)
+        {
+            REQUIRE(v == ++i);
+        }
+    }
+}
+
 TEMPLATE_TEST_CASE("list test with", "[template]", int, double, float, char, short, long, long long, unsigned char, unsigned short, unsigned int, unsigned long, unsigned long long)
 {
     LinkedList::List<TestType> list;
