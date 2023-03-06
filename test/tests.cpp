@@ -208,28 +208,52 @@ TEST_CASE("list iterator", "[iterator]")
 {
     LinkedList::List<int> list;
 
-    int i{0};
-
-    while (i++ < 100)
+    SECTION("with the empty list")
     {
-        list.push_back(i);
-    }
+        REQUIRE(list.begin() == list.end());
 
-    i = 0;
-
-    SECTION("standard for loop")
-    {
-        for (LinkedList::List<int>::iterator it{list.begin()}; it != list.end(); ++it)
+        SECTION("standard for loop")
         {
-            REQUIRE(*it == ++i);
+            for (LinkedList::List<int>::iterator it{list.begin()}; it != list.end(); ++it)
+            {
+                REQUIRE(false);
+            }
+        }
+
+        SECTION("range-based for loop")
+        {
+            for (const auto &v : list)
+            {
+                REQUIRE(false);
+            }
         }
     }
 
-    SECTION("range-based for loop")
+    SECTION("with elements in the list")
     {
-        for (const auto &v: list)
+        int i{0};
+
+        while (i++ < 100)
         {
-            REQUIRE(v == ++i);
+            list.push_back(i);
+        }
+
+        i = 0;
+
+        SECTION("standard for loop")
+        {
+            for (LinkedList::List<int>::iterator it{list.begin()}; it != list.end(); ++it)
+            {
+                REQUIRE(*it == ++i);
+            }
+        }
+
+        SECTION("range-based for loop")
+        {
+            for (const auto &v: list)
+            {
+                REQUIRE(v == ++i);
+            }
         }
     }
 }
