@@ -35,6 +35,23 @@ namespace LinkedList
         void push_back(const T &value);
         void pop_back();
 
+        class iterator
+        {
+        public:
+            iterator(ListNode *node = nullptr);
+
+            T &operator*() const;
+            bool operator!=(const iterator &other) const;
+            bool operator==(const iterator &other) const;
+            iterator &operator++();
+
+        private:
+            ListNode *m_node;
+        };
+
+        iterator begin();
+        iterator end();
+
     private:
         ListNode *firstNode;
         ListNode *lastNode;

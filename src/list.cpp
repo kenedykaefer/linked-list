@@ -131,4 +131,44 @@ void LinkedList::List<T>::pop_back()
     }
     m_size--;
 }
+
+template <typename T>
+LinkedList::List<T>::iterator::iterator(ListNode *node) : m_node{node} {}
+
+template <typename T>
+T &LinkedList::List<T>::iterator::operator*() const
+{
+    return m_node->data;
+}
+
+template <typename T>
+bool LinkedList::List<T>::iterator::operator!=(const LinkedList::List<T>::iterator &other) const
+{
+    return m_node != other.m_node;
+}
+
+template <typename T>
+bool LinkedList::List<T>::iterator::operator==(const LinkedList::List<T>::iterator &other) const
+{
+    return m_node == other.m_node;
+}
+
+template <typename T>
+typename LinkedList::List<T>::iterator &LinkedList::List<T>::iterator::operator++()
+{
+    m_node = m_node->nextNode;
+    return *this;
+}
+
+template <typename T>
+typename LinkedList::List<T>::iterator LinkedList::List<T>::begin()
+{
+    return iterator{firstNode};
+}
+
+template <typename T>
+typename LinkedList::List<T>::iterator LinkedList::List<T>::end()
+{
+    return iterator{nullptr};
+}
 #endif // LINKEDLIST_CPP
