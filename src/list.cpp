@@ -28,7 +28,7 @@ LinkedList::List<T>::~List()
 template <typename T>
 bool LinkedList::List<T>::isEmpty() const
 {
-    return !m_size;
+    return firstNode == nullptr;
 }
 
 template <typename T>
