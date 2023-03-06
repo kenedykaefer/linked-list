@@ -11,12 +11,8 @@ namespace LinkedList
     private:
         class ListNode
         {
-            friend class List;
-
         public:
             ListNode(const T &value);
-
-        private:
             T data;
             ListNode *nextNode;
         };
