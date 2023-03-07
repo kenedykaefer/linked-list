@@ -133,6 +133,23 @@ void LinkedList::List<T>::pop_back()
 }
 
 template <typename T>
+void LinkedList::List<T>::clear()
+{
+    ListNode *currentNode{firstNode};
+
+    while (firstNode != nullptr)
+    {
+        firstNode = currentNode->nextNode;
+        delete currentNode;
+        currentNode = firstNode;
+    }
+
+    lastNode = nullptr;
+
+    m_size = 0;
+}
+
+template <typename T>
 LinkedList::List<T>::iterator::iterator(ListNode *node) : m_node{node} {}
 
 template <typename T>

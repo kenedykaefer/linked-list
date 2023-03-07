@@ -30,6 +30,7 @@ namespace LinkedList
 
         void push_back(const T &value);
         void pop_back();
+        void clear();
 
         class iterator
         {
