@@ -268,7 +268,7 @@ TEST_CASE("clear method", "[clear]")
     REQUIRE(list.isEmpty());
     REQUIRE_THROWS_AS(list.front(), std::out_of_range);
     REQUIRE_THROWS_AS(list.back(), std::out_of_range);
-    
+
     int i{0};
 
     while (i++ < 10)
@@ -287,6 +287,32 @@ TEST_CASE("clear method", "[clear]")
     REQUIRE(list.isEmpty());
     REQUIRE_THROWS_AS(list.front(), std::out_of_range);
     REQUIRE_THROWS_AS(list.back(), std::out_of_range);
+}
+
+TEST_CASE("operator[] method", "[element access],[operator],[brackets]")
+{
+    LinkedList::List<int> list;
+
+    SECTION("with the empty list")
+    {
+        REQUIRE_THROWS_AS(list[0], std::out_of_range);
+        REQUIRE_THROWS_AS(list[1], std::out_of_range);
+    }
+
+    SECTION("with elements in the list")
+    {
+        const int count = 100;
+
+        for (int i = 0; i < count; i++)
+        {
+            list.push_back(i);
+        }
+
+        for (size_t i = 0; i < count; i++)
+        {
+            REQUIRE(list[i] == i);
+        }
+    }
 }
 
 TEMPLATE_TEST_CASE("list test with", "[template]", int, double, float, char, short, long, long long, unsigned char, unsigned short, unsigned int, unsigned long, unsigned long long)
