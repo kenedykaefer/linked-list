@@ -57,7 +57,7 @@ T LinkedList::List<T>::at(size_t position) const
 template <typename T>
 T LinkedList::List<T>::front() const
 {
-    if (!m_size)
+    if (firstNode == nullptr)
         throw empty_list();
 
     return firstNode->data;
@@ -66,7 +66,7 @@ T LinkedList::List<T>::front() const
 template <typename T>
 T LinkedList::List<T>::back() const
 {
-    if (!m_size)
+    if (lastNode == nullptr)
         throw empty_list();
 
     return lastNode->data;
