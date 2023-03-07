@@ -38,6 +38,12 @@ size_t LinkedList::List<T>::size() const
 }
 
 template <typename T>
+T LinkedList::List<T>::operator[](size_t position) const
+{
+    return at(position);
+}
+
+template <typename T>
 T LinkedList::List<T>::at(size_t position) const
 {
     if (!m_size)

@@ -24,6 +24,7 @@ namespace LinkedList
         bool isEmpty() const;
         size_t size() const;
 
+        T operator[](size_t position) const;
         T at(size_t position) const;
         T front() const;
         T back() const;
