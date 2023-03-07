@@ -250,12 +250,43 @@ TEST_CASE("list iterator", "[iterator]")
 
         SECTION("range-based for loop")
         {
-            for (const auto &v: list)
+            for (const auto &v : list)
             {
                 REQUIRE(v == ++i);
             }
         }
     }
+}
+
+TEST_CASE("clear method", "[clear]")
+{
+    LinkedList::List<int> list;
+
+    list.clear();
+
+    REQUIRE(list.size() == 0);
+    REQUIRE(list.isEmpty());
+    REQUIRE_THROWS_AS(list.front(), std::out_of_range);
+    REQUIRE_THROWS_AS(list.back(), std::out_of_range);
+    
+    int i{0};
+
+    while (i++ < 10)
+    {
+        list.push_back(i);
+    }
+
+    REQUIRE(list.size() == 10);
+    REQUIRE(list.isEmpty() == false);
+    REQUIRE(list.front() == 1);
+    REQUIRE(list.back() == 10);
+
+    list.clear();
+
+    REQUIRE(list.size() == 0);
+    REQUIRE(list.isEmpty());
+    REQUIRE_THROWS_AS(list.front(), std::out_of_range);
+    REQUIRE_THROWS_AS(list.back(), std::out_of_range);
 }
 
 TEMPLATE_TEST_CASE("list test with", "[template]", int, double, float, char, short, long, long long, unsigned char, unsigned short, unsigned int, unsigned long, unsigned long long)
