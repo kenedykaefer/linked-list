@@ -315,6 +315,18 @@ TEST_CASE("operator[] method", "[element access],[operator],[brackets]")
     }
 }
 
+TEST_CASE("construtor with initializer list", "[initializer_list]")
+{
+    LinkedList::List<int> list{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    int i{0};
+
+    for (int value : list)
+    {
+        REQUIRE(value == i++);
+    }
+}
+
 TEMPLATE_TEST_CASE("list test with", "[template]", int, double, float, char, short, long, long long, unsigned char, unsigned short, unsigned int, unsigned long, unsigned long long)
 {
     LinkedList::List<TestType> list;
