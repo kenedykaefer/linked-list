@@ -15,6 +15,15 @@ LinkedList::List<T>::List() : firstNode{nullptr}, lastNode{nullptr}, m_size{0}
 }
 
 template <typename T>
+LinkedList::List<T>::List(std::initializer_list<T> values) : firstNode{nullptr}, lastNode{nullptr}, m_size{0}
+{
+    for (T i : values)
+    {
+        push_back(i);
+    }
+}
+
+template <typename T>
 LinkedList::List<T>::~List()
 {
     while (firstNode != nullptr)

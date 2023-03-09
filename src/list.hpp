@@ -2,6 +2,7 @@
 #define LINKEDLIST_HPP
 
 #include <cstddef>
+#include <initializer_list>
 
 namespace LinkedList
 {
@@ -19,6 +20,7 @@ namespace LinkedList
 
     public:
         List();
+        List(std::initializer_list<T> values);
         ~List();
 
         bool isEmpty() const;
